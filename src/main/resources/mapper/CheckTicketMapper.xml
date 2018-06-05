@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.CheckTicketMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.CheckTicket" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PROJECT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BATCH_NUMBER" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DEAL_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BARCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GZONE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IN_GARDEN_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="DEVICE_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="INCOUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_CODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CHECK_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="TICKET_PRICE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="DISCOUNT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CHECK_COUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TICKET_AMOUNT" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="TICKET_PEOPLE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="IS_DEL" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UPDATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="CREATER" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="UPDATER" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROJECT_ID, PROJECT_NAME, BATCH_NUMBER, DEAL_ID, TICKET_TYPE, BARCODE, TICKET_NAME, 
+    GZONE, IN_GARDEN_DATE, DEVICE_NAME, INCOUNT, TYPE, TICKET_CODE, CHECK_DATE, TICKET_PRICE, 
+    DISCOUNT, CHECK_COUNT, TICKET_AMOUNT, TICKET_PEOPLE, IS_DEL, CREATE_DATE, UPDATE_DATE, 
+    CREATER, UPDATER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from check_ticket_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from check_ticket_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.CheckTicket" >
+    insert into check_ticket_detail (ID, PROJECT_ID, PROJECT_NAME, 
+      BATCH_NUMBER, DEAL_ID, TICKET_TYPE, 
+      BARCODE, TICKET_NAME, GZONE, 
+      IN_GARDEN_DATE, DEVICE_NAME, INCOUNT, 
+      TYPE, TICKET_CODE, CHECK_DATE, 
+      TICKET_PRICE, DISCOUNT, CHECK_COUNT, 
+      TICKET_AMOUNT, TICKET_PEOPLE, IS_DEL, 
+      CREATE_DATE, UPDATE_DATE, CREATER, 
+      UPDATER)
+    values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{batchNumber,jdbcType=VARCHAR}, #{dealId,jdbcType=VARCHAR}, #{ticketType,jdbcType=VARCHAR}, 
+      #{barcode,jdbcType=VARCHAR}, #{ticketName,jdbcType=VARCHAR}, #{gzone,jdbcType=VARCHAR}, 
+      #{inGardenDate,jdbcType=TIMESTAMP}, #{deviceName,jdbcType=VARCHAR}, #{incount,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{ticketCode,jdbcType=VARCHAR}, #{checkDate,jdbcType=TIMESTAMP}, 
+      #{ticketPrice,jdbcType=DECIMAL}, #{discount,jdbcType=VARCHAR}, #{checkCount,jdbcType=INTEGER}, 
+      #{ticketAmount,jdbcType=DECIMAL}, #{ticketPeople,jdbcType=INTEGER}, #{isDel,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.CheckTicket" >
+    insert into check_ticket_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="batchNumber != null" >
+        BATCH_NUMBER,
+      </if>
+      <if test="dealId != null" >
+        DEAL_ID,
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE,
+      </if>
+      <if test="barcode != null" >
+        BARCODE,
+      </if>
+      <if test="ticketName != null" >
+        TICKET_NAME,
+      </if>
+      <if test="gzone != null" >
+        GZONE,
+      </if>
+      <if test="inGardenDate != null" >
+        IN_GARDEN_DATE,
+      </if>
+      <if test="deviceName != null" >
+        DEVICE_NAME,
+      </if>
+      <if test="incount != null" >
+        INCOUNT,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="ticketCode != null" >
+        TICKET_CODE,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="ticketPrice != null" >
+        TICKET_PRICE,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="checkCount != null" >
+        CHECK_COUNT,
+      </if>
+      <if test="ticketAmount != null" >
+        TICKET_AMOUNT,
+      </if>
+      <if test="ticketPeople != null" >
+        TICKET_PEOPLE,
+      </if>
+      <if test="isDel != null" >
+        IS_DEL,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="updater != null" >
+        UPDATER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null" >
+        #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dealId != null" >
+        #{dealId,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketName != null" >
+        #{ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="gzone != null" >
+        #{gzone,jdbcType=VARCHAR},
+      </if>
+      <if test="inGardenDate != null" >
+        #{inGardenDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="incount != null" >
+        #{incount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCode != null" >
+        #{ticketCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketPrice != null" >
+        #{ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCount != null" >
+        #{checkCount,jdbcType=INTEGER},
+      </if>
+      <if test="ticketAmount != null" >
+        #{ticketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPeople != null" >
+        #{ticketPeople,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null" >
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.CheckTicket" >
+    update check_ticket_detail
+    <set >
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null" >
+        BATCH_NUMBER = #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dealId != null" >
+        DEAL_ID = #{dealId,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE = #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        BARCODE = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketName != null" >
+        TICKET_NAME = #{ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="gzone != null" >
+        GZONE = #{gzone,jdbcType=VARCHAR},
+      </if>
+      <if test="inGardenDate != null" >
+        IN_GARDEN_DATE = #{inGardenDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceName != null" >
+        DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="incount != null" >
+        INCOUNT = #{incount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCode != null" >
+        TICKET_CODE = #{ticketCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ticketPrice != null" >
+        TICKET_PRICE = #{ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCount != null" >
+        CHECK_COUNT = #{checkCount,jdbcType=INTEGER},
+      </if>
+      <if test="ticketAmount != null" >
+        TICKET_AMOUNT = #{ticketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPeople != null" >
+        TICKET_PEOPLE = #{ticketPeople,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        IS_DEL = #{isDel,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updater != null" >
+        UPDATER = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.CheckTicket" >
+    update check_ticket_detail
+    set PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      BATCH_NUMBER = #{batchNumber,jdbcType=VARCHAR},
+      DEAL_ID = #{dealId,jdbcType=VARCHAR},
+      TICKET_TYPE = #{ticketType,jdbcType=VARCHAR},
+      BARCODE = #{barcode,jdbcType=VARCHAR},
+      TICKET_NAME = #{ticketName,jdbcType=VARCHAR},
+      GZONE = #{gzone,jdbcType=VARCHAR},
+      IN_GARDEN_DATE = #{inGardenDate,jdbcType=TIMESTAMP},
+      DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      INCOUNT = #{incount,jdbcType=INTEGER},
+      TYPE = #{type,jdbcType=VARCHAR},
+      TICKET_CODE = #{ticketCode,jdbcType=VARCHAR},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      TICKET_PRICE = #{ticketPrice,jdbcType=DECIMAL},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      CHECK_COUNT = #{checkCount,jdbcType=INTEGER},
+      TICKET_AMOUNT = #{ticketAmount,jdbcType=DECIMAL},
+      TICKET_PEOPLE = #{ticketPeople,jdbcType=INTEGER},
+      IS_DEL = #{isDel,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      UPDATER = #{updater,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="clearAll">
+    delete from check_ticket_detail;
+  </delete>
+</mapper>

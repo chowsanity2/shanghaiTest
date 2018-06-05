@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.IncomeReportMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.IncomeReport" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TYPE_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE_AMOUNT" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="DATE_TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BUDGET_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SALE_PERCENTUM" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BOOKING_COUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="PROJECT_LEVEL" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TYPE_ID, TYPE_NAME, TYPE_AMOUNT, DATE_TYPE, TYPE, BUDGET_ID, SALE_PERCENTUM, 
+    BOOKING_COUNT, CREATE_DATE, PROJECT_LEVEL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from income_report_forms
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from income_report_forms
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.IncomeReport" >
+    insert into income_report_forms (ID, TYPE_ID, TYPE_NAME, 
+      TYPE_AMOUNT, DATE_TYPE, TYPE, 
+      BUDGET_ID, SALE_PERCENTUM, BOOKING_COUNT, 
+      CREATE_DATE, PROJECT_LEVEL)
+    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{typeAmount,jdbcType=DECIMAL}, #{dateType,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{budgetId,jdbcType=INTEGER}, #{salePercentum,jdbcType=VARCHAR}, #{bookingCount,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{projectLevel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.IncomeReport" >
+    insert into income_report_forms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME,
+      </if>
+      <if test="typeAmount != null" >
+        TYPE_AMOUNT,
+      </if>
+      <if test="dateType != null" >
+        DATE_TYPE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="budgetId != null" >
+        BUDGET_ID,
+      </if>
+      <if test="salePercentum != null" >
+        SALE_PERCENTUM,
+      </if>
+      <if test="bookingCount != null" >
+        BOOKING_COUNT,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAmount != null" >
+        #{typeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dateType != null" >
+        #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="budgetId != null" >
+        #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="salePercentum != null" >
+        #{salePercentum,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingCount != null" >
+        #{bookingCount,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectLevel != null" >
+        #{projectLevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.IncomeReport" >
+    update income_report_forms
+    <set >
+      <if test="typeId != null" >
+        TYPE_ID = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAmount != null" >
+        TYPE_AMOUNT = #{typeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dateType != null" >
+        DATE_TYPE = #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="budgetId != null" >
+        BUDGET_ID = #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="salePercentum != null" >
+        SALE_PERCENTUM = #{salePercentum,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingCount != null" >
+        BOOKING_COUNT = #{bookingCount,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL = #{projectLevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.IncomeReport" >
+    update income_report_forms
+    set TYPE_ID = #{typeId,jdbcType=VARCHAR},
+      TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      TYPE_AMOUNT = #{typeAmount,jdbcType=DECIMAL},
+      DATE_TYPE = #{dateType,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      BUDGET_ID = #{budgetId,jdbcType=INTEGER},
+      SALE_PERCENTUM = #{salePercentum,jdbcType=VARCHAR},
+      BOOKING_COUNT = #{bookingCount,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PROJECT_LEVEL = #{projectLevel,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="clearAll">
+    delete from income_report_forms;
+  </delete>
+
+  <select id="findAmountByLayoutId" parameterType="com.chow.model.vo.Con4Budget" resultType="Integer">
+    select TYPE_AMOUNT from income_report_forms where PROJECT_LEVEL = #{pLevel} and DATE_TYPE = #{typeDate}
+    and TYPE_ID = #{layoutId}
+  </select>
+
+  <select id="findTotalAmount" parameterType="com.chow.model.vo.Con4Budget" resultType="Integer">
+    select sum(TYPE_AMOUNT) from income_report_forms where PROJECT_LEVEL = #{pLevel} and DATE_TYPE = #{typeDate}
+  </select>
+
+</mapper>

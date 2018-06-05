@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.LayoutMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.Layout" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LAYOUT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAYOUT_DESCRIBE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UPDATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LAYOUT_NAME, LAYOUT_DESCRIBE, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from layout_data
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from layout_data
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.Layout" >
+    insert into layout_data (ID, LAYOUT_NAME, LAYOUT_DESCRIBE, 
+      CREATE_DATE, UPDATE_DATE)
+    values (#{id,jdbcType=INTEGER}, #{layoutName,jdbcType=VARCHAR}, #{layoutDescribe,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.Layout" >
+    insert into layout_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME,
+      </if>
+      <if test="layoutDescribe != null" >
+        LAYOUT_DESCRIBE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutDescribe != null" >
+        #{layoutDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.Layout" >
+    update layout_data
+    <set >
+      <if test="layoutName != null" >
+        LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutDescribe != null" >
+        LAYOUT_DESCRIBE = #{layoutDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.Layout" >
+    update layout_data
+    set LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      LAYOUT_DESCRIBE = #{layoutDescribe,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

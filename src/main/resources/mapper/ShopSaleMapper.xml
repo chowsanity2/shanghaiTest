@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.ShopSaleMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.ShopSale" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PROJECT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAYOUT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LAYOUT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SALE_TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SHOP_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SHOP_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SHOP_PRICE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SALE_COUNT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SALE_PRICE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="SALE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROJECT_ID, PROJECT_NAME, LAYOUT_ID, LAYOUT_NAME, SALE_TYPE, SHOP_ID, SHOP_NAME, 
+    SHOP_PRICE, SALE_COUNT, SALE_PRICE, SALE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_sale_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop_sale_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.ShopSale" >
+    insert into shop_sale_detail (ID, PROJECT_ID, PROJECT_NAME, 
+      LAYOUT_ID, LAYOUT_NAME, SALE_TYPE, 
+      SHOP_ID, SHOP_NAME, SHOP_PRICE, 
+      SALE_COUNT, SALE_PRICE, SALE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{layoutId,jdbcType=INTEGER}, #{layoutName,jdbcType=VARCHAR}, #{saleType,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{shopPrice,jdbcType=DECIMAL}, 
+      #{saleCount,jdbcType=VARCHAR}, #{salePrice,jdbcType=DECIMAL}, #{saleDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.ShopSale" >
+    insert into shop_sale_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID,
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME,
+      </if>
+      <if test="saleType != null" >
+        SALE_TYPE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="shopPrice != null" >
+        SHOP_PRICE,
+      </if>
+      <if test="saleCount != null" >
+        SALE_COUNT,
+      </if>
+      <if test="salePrice != null" >
+        SALE_PRICE,
+      </if>
+      <if test="saleDate != null" >
+        SALE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        #{saleType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPrice != null" >
+        #{shopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleCount != null" >
+        #{saleCount,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleDate != null" >
+        #{saleDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.ShopSale" >
+    update shop_sale_detail
+    <set >
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleType != null" >
+        SALE_TYPE = #{saleType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPrice != null" >
+        SHOP_PRICE = #{shopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleCount != null" >
+        SALE_COUNT = #{saleCount,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null" >
+        SALE_PRICE = #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleDate != null" >
+        SALE_DATE = #{saleDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.ShopSale" >
+    update shop_sale_detail
+    set PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      SALE_TYPE = #{saleType,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SHOP_PRICE = #{shopPrice,jdbcType=DECIMAL},
+      SALE_COUNT = #{saleCount,jdbcType=VARCHAR},
+      SALE_PRICE = #{salePrice,jdbcType=DECIMAL},
+      SALE_DATE = #{saleDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="clearAll">
+    delete from shop_sale_detail;
+  </delete>
+</mapper>

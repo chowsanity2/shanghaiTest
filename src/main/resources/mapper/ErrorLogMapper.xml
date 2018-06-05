@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.ErrorLogMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.ErrorLog" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="REQ_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ERROR_CAUSE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, REQ_ID, ERROR_CAUSE, CREATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from error_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from error_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.ErrorLog" >
+    insert into error_log (ID, REQ_ID, ERROR_CAUSE, 
+      CREATE_DATE)
+    values (#{id,jdbcType=INTEGER}, #{reqId,jdbcType=VARCHAR}, #{errorCause,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.ErrorLog" >
+    insert into error_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="reqId != null" >
+        REQ_ID,
+      </if>
+      <if test="errorCause != null" >
+        ERROR_CAUSE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="reqId != null" >
+        #{reqId,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCause != null" >
+        #{errorCause,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.ErrorLog" >
+    update error_log
+    <set >
+      <if test="reqId != null" >
+        REQ_ID = #{reqId,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCause != null" >
+        ERROR_CAUSE = #{errorCause,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.ErrorLog" >
+    update error_log
+    set REQ_ID = #{reqId,jdbcType=VARCHAR},
+      ERROR_CAUSE = #{errorCause,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

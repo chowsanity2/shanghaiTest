@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.BudgetMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.Budget" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PROJECT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAYOUT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LAYOUT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE_DATE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BUDGET" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UPDATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROJECT_ID, PROJECT_NAME, LAYOUT_ID, LAYOUT_NAME, TYPE_DATE, TYPE, BUDGET, CREATE_DATE, 
+    UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from budget_data
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from budget_data
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.Budget" >
+    insert into budget_data (ID, PROJECT_ID, PROJECT_NAME, 
+      LAYOUT_ID, LAYOUT_NAME, TYPE_DATE, 
+      TYPE, BUDGET, CREATE_DATE, 
+      UPDATE_DATE)
+    values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{layoutId,jdbcType=INTEGER}, #{layoutName,jdbcType=VARCHAR}, #{typeDate,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{budget,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.Budget" >
+    insert into budget_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID,
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME,
+      </if>
+      <if test="typeDate != null" >
+        TYPE_DATE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="budget != null" >
+        BUDGET,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDate != null" >
+        #{typeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="budget != null" >
+        #{budget,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.Budget" >
+    update budget_data
+    <set >
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDate != null" >
+        TYPE_DATE = #{typeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="budget != null" >
+        BUDGET = #{budget,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.Budget" >
+    update budget_data
+    set PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      TYPE_DATE = #{typeDate,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      BUDGET = #{budget,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getBudgetWithProAndDate" parameterType="com.chow.model.vo.Con4Budget" resultType="com.chow.model.Budget">
+    select * from budget_data where PROJECT_ID = #{projectId} AND TYPE_DATE = #{typeDate}
+  </select>
+
+  <select id="getBudgetWithLayoutAndDate" parameterType="com.chow.model.vo.Con4Budget" resultType="com.chow.model.Budget">
+    select * from budget_data where LAYOUT_ID = #{layoutId} AND TYPE_DATE = #{typeDate}
+  </select>
+
+  <select id="getBudgetWithBuildAndDate" parameterType="com.chow.model.vo.Con4Budget" resultType="com.chow.model.Budget">
+    select * from budget_data where TYPE_DATE = #{typeDate}
+  </select>
+
+  <select id="getAllBudget2Map" resultMap="BaseResultMap">
+    select * from  budget_data;
+  </select>
+</mapper>

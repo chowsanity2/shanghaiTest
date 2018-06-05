@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.BatchMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.Batch" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BATCH_NUMBER" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAYOUT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LAYOUT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TOTAL_COUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PAGE_TOTAL" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="STATISTICS_STATE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GET_STATE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GET_COUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="IS_DEL" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UPDATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, BATCH_NUMBER, LAYOUT_ID, LAYOUT_NAME, TOTAL_COUNT, PAGE_TOTAL, STATISTICS_STATE, 
+    GET_STATE, GET_COUNT, IS_DEL, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from batch_data
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from batch_data
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.Batch" >
+    insert into batch_data (ID, BATCH_NUMBER, LAYOUT_ID, 
+      LAYOUT_NAME, TOTAL_COUNT, PAGE_TOTAL, 
+      STATISTICS_STATE, GET_STATE, GET_COUNT, 
+      IS_DEL, CREATE_DATE, UPDATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{batchNumber,jdbcType=VARCHAR}, #{layoutId,jdbcType=INTEGER}, 
+      #{layoutName,jdbcType=VARCHAR}, #{totalCount,jdbcType=INTEGER}, #{pageTotal,jdbcType=INTEGER}, 
+      #{statisticsState,jdbcType=VARCHAR}, #{getState,jdbcType=VARCHAR}, #{getCount,jdbcType=INTEGER}, 
+      #{isDel,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.Batch" >
+    insert into batch_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="batchNumber != null" >
+        BATCH_NUMBER,
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID,
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME,
+      </if>
+      <if test="totalCount != null" >
+        TOTAL_COUNT,
+      </if>
+      <if test="pageTotal != null" >
+        PAGE_TOTAL,
+      </if>
+      <if test="statisticsState != null" >
+        STATISTICS_STATE,
+      </if>
+      <if test="getState != null" >
+        GET_STATE,
+      </if>
+      <if test="getCount != null" >
+        GET_COUNT,
+      </if>
+      <if test="isDel != null" >
+        IS_DEL,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchNumber != null" >
+        #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCount != null" >
+        #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="pageTotal != null" >
+        #{pageTotal,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsState != null" >
+        #{statisticsState,jdbcType=VARCHAR},
+      </if>
+      <if test="getState != null" >
+        #{getState,jdbcType=VARCHAR},
+      </if>
+      <if test="getCount != null" >
+        #{getCount,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.Batch" >
+    update batch_data
+    <set >
+      <if test="batchNumber != null" >
+        BATCH_NUMBER = #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCount != null" >
+        TOTAL_COUNT = #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="pageTotal != null" >
+        PAGE_TOTAL = #{pageTotal,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsState != null" >
+        STATISTICS_STATE = #{statisticsState,jdbcType=VARCHAR},
+      </if>
+      <if test="getState != null" >
+        GET_STATE = #{getState,jdbcType=VARCHAR},
+      </if>
+      <if test="getCount != null" >
+        GET_COUNT = #{getCount,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        IS_DEL = #{isDel,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.Batch" >
+    update batch_data
+    set BATCH_NUMBER = #{batchNumber,jdbcType=VARCHAR},
+      LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      TOTAL_COUNT = #{totalCount,jdbcType=INTEGER},
+      PAGE_TOTAL = #{pageTotal,jdbcType=INTEGER},
+      STATISTICS_STATE = #{statisticsState,jdbcType=VARCHAR},
+      GET_STATE = #{getState,jdbcType=VARCHAR},
+      GET_COUNT = #{getCount,jdbcType=INTEGER},
+      IS_DEL = #{isDel,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findBatchBySeqId" parameterType="String" resultType="Batch">
+        select * from batch_data where BATCH_NUMBER = #{batchNumber}
+  </select>
+
+  <select id="findBatchByLayoutId" parameterType="Integer" resultType="String">
+        select BATCH_NUMBER from batch_data where layout_id = #{layoutId}
+  </select>
+
+  <select id="findBatchNotLayoutId" parameterType="Integer" resultType="String">
+        select BATCH_NUMBER from batch_data where layout_id not in (#{layout_id},6,10)
+  </select>
+
+</mapper>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.TicketSaleMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.TicketSale" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PROJECT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LAYOUT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LAYOUT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DEAL_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DEAL_TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AGENCY_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_PRICE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="TICKET_COUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DISCOUNT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_AMOUNT" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="TICKET_PEOPLE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BARCODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_CODE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="GZONE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="EMP_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COLLECT_TERMINAL_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DEAL_REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SALE_DATE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TERMINAL_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROJECT_ID, PROJECT_NAME, LAYOUT_ID, LAYOUT_NAME, DEAL_ID, DEAL_TYPE, AGENCY_NAME, 
+    TICKET_PRICE, TICKET_COUNT, DISCOUNT, TICKET_AMOUNT, TICKET_PEOPLE, BARCODE, TICKET_CODE, 
+    TICKET_NAME, TICKET_TYPE, GZONE, EMP_NAME, COLLECT_TERMINAL_NAME, DEAL_REMARK, SALE_DATE, 
+    TERMINAL_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ticket_sale_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket_sale_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.TicketSale" >
+    insert into ticket_sale_detail (ID, PROJECT_ID, PROJECT_NAME, 
+      LAYOUT_ID, LAYOUT_NAME, DEAL_ID, 
+      DEAL_TYPE, AGENCY_NAME, TICKET_PRICE, 
+      TICKET_COUNT, DISCOUNT, TICKET_AMOUNT, 
+      TICKET_PEOPLE, BARCODE, TICKET_CODE, 
+      TICKET_NAME, TICKET_TYPE, GZONE, 
+      EMP_NAME, COLLECT_TERMINAL_NAME, DEAL_REMARK, 
+      SALE_DATE, TERMINAL_NAME)
+    values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{layoutId,jdbcType=INTEGER}, #{layoutName,jdbcType=VARCHAR}, #{dealId,jdbcType=VARCHAR}, 
+      #{dealType,jdbcType=VARCHAR}, #{agencyName,jdbcType=VARCHAR}, #{ticketPrice,jdbcType=DECIMAL}, 
+      #{ticketCount,jdbcType=INTEGER}, #{discount,jdbcType=VARCHAR}, #{ticketAmount,jdbcType=DECIMAL}, 
+      #{ticketPeople,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR}, #{ticketCode,jdbcType=VARCHAR}, 
+      #{ticketName,jdbcType=VARCHAR}, #{ticketType,jdbcType=VARCHAR}, #{gzone,jdbcType=VARCHAR}, 
+      #{empName,jdbcType=VARCHAR}, #{collectTerminalName,jdbcType=VARCHAR}, #{dealRemark,jdbcType=VARCHAR}, 
+      #{saleDate,jdbcType=VARCHAR}, #{terminalName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.TicketSale" >
+    insert into ticket_sale_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID,
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME,
+      </if>
+      <if test="dealId != null" >
+        DEAL_ID,
+      </if>
+      <if test="dealType != null" >
+        DEAL_TYPE,
+      </if>
+      <if test="agencyName != null" >
+        AGENCY_NAME,
+      </if>
+      <if test="ticketPrice != null" >
+        TICKET_PRICE,
+      </if>
+      <if test="ticketCount != null" >
+        TICKET_COUNT,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="ticketAmount != null" >
+        TICKET_AMOUNT,
+      </if>
+      <if test="ticketPeople != null" >
+        TICKET_PEOPLE,
+      </if>
+      <if test="barcode != null" >
+        BARCODE,
+      </if>
+      <if test="ticketCode != null" >
+        TICKET_CODE,
+      </if>
+      <if test="ticketName != null" >
+        TICKET_NAME,
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE,
+      </if>
+      <if test="gzone != null" >
+        GZONE,
+      </if>
+      <if test="empName != null" >
+        EMP_NAME,
+      </if>
+      <if test="collectTerminalName != null" >
+        COLLECT_TERMINAL_NAME,
+      </if>
+      <if test="dealRemark != null" >
+        DEAL_REMARK,
+      </if>
+      <if test="saleDate != null" >
+        SALE_DATE,
+      </if>
+      <if test="terminalName != null" >
+        TERMINAL_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealId != null" >
+        #{dealId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealType != null" >
+        #{dealType,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyName != null" >
+        #{agencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPrice != null" >
+        #{ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketCount != null" >
+        #{ticketCount,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketAmount != null" >
+        #{ticketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPeople != null" >
+        #{ticketPeople,jdbcType=INTEGER},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCode != null" >
+        #{ticketCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketName != null" >
+        #{ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="gzone != null" >
+        #{gzone,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null" >
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTerminalName != null" >
+        #{collectTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealRemark != null" >
+        #{dealRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="saleDate != null" >
+        #{saleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalName != null" >
+        #{terminalName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.TicketSale" >
+    update ticket_sale_detail
+    <set >
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealId != null" >
+        DEAL_ID = #{dealId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealType != null" >
+        DEAL_TYPE = #{dealType,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyName != null" >
+        AGENCY_NAME = #{agencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketPrice != null" >
+        TICKET_PRICE = #{ticketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketCount != null" >
+        TICKET_COUNT = #{ticketCount,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketAmount != null" >
+        TICKET_AMOUNT = #{ticketAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ticketPeople != null" >
+        TICKET_PEOPLE = #{ticketPeople,jdbcType=INTEGER},
+      </if>
+      <if test="barcode != null" >
+        BARCODE = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCode != null" >
+        TICKET_CODE = #{ticketCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketName != null" >
+        TICKET_NAME = #{ticketName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null" >
+        TICKET_TYPE = #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="gzone != null" >
+        GZONE = #{gzone,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null" >
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="collectTerminalName != null" >
+        COLLECT_TERMINAL_NAME = #{collectTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealRemark != null" >
+        DEAL_REMARK = #{dealRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="saleDate != null" >
+        SALE_DATE = #{saleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalName != null" >
+        TERMINAL_NAME = #{terminalName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.TicketSale" >
+    update ticket_sale_detail
+    set PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      DEAL_ID = #{dealId,jdbcType=VARCHAR},
+      DEAL_TYPE = #{dealType,jdbcType=VARCHAR},
+      AGENCY_NAME = #{agencyName,jdbcType=VARCHAR},
+      TICKET_PRICE = #{ticketPrice,jdbcType=DECIMAL},
+      TICKET_COUNT = #{ticketCount,jdbcType=INTEGER},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      TICKET_AMOUNT = #{ticketAmount,jdbcType=DECIMAL},
+      TICKET_PEOPLE = #{ticketPeople,jdbcType=INTEGER},
+      BARCODE = #{barcode,jdbcType=VARCHAR},
+      TICKET_CODE = #{ticketCode,jdbcType=VARCHAR},
+      TICKET_NAME = #{ticketName,jdbcType=VARCHAR},
+      TICKET_TYPE = #{ticketType,jdbcType=VARCHAR},
+      GZONE = #{gzone,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR},
+      COLLECT_TERMINAL_NAME = #{collectTerminalName,jdbcType=VARCHAR},
+      DEAL_REMARK = #{dealRemark,jdbcType=VARCHAR},
+      SALE_DATE = #{saleDate,jdbcType=VARCHAR},
+      TERMINAL_NAME = #{terminalName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="clearAll">
+    delete from ticket_sale_detail;
+  </delete>
+</mapper>

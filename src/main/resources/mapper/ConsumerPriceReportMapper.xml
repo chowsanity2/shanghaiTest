@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.ConsumerPriceReportMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.ConsumerPriceReport" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="LAYOUT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LAYOUT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="COMPREHENSIVE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PRICE" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="CREATED_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UPDATE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="PROJECT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BUILDING_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BUILDING_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PROJECT_LEVEL" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DATE, LAYOUT_ID, LAYOUT_NAME, COMPREHENSIVE, PRICE, CREATED_TIME, UPDATE_TIME, 
+    PROJECT_ID, PROJECT_NAME, BUILDING_ID, BUILDING_NAME, PROJECT_LEVEL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from consumer_price_report
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from consumer_price_report
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.ConsumerPriceReport" >
+    insert into consumer_price_report (ID, DATE, LAYOUT_ID, 
+      LAYOUT_NAME, COMPREHENSIVE, PRICE, 
+      CREATED_TIME, UPDATE_TIME, PROJECT_ID, 
+      PROJECT_NAME, BUILDING_ID, BUILDING_NAME, 
+      PROJECT_LEVEL)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{layoutId,jdbcType=INTEGER}, 
+      #{layoutName,jdbcType=VARCHAR}, #{comprehensive,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{projectId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{buildingId,jdbcType=INTEGER}, #{buildingName,jdbcType=VARCHAR}, 
+      #{projectLevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.ConsumerPriceReport" >
+    insert into consumer_price_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="date != null" >
+        DATE,
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID,
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME,
+      </if>
+      <if test="comprehensive != null" >
+        COMPREHENSIVE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="buildingId != null" >
+        BUILDING_ID,
+      </if>
+      <if test="buildingName != null" >
+        BUILDING_NAME,
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="layoutId != null" >
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="comprehensive != null" >
+        #{comprehensive,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingName != null" >
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLevel != null" >
+        #{projectLevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.ConsumerPriceReport" >
+    update consumer_price_report
+    <set >
+      <if test="date != null" >
+        DATE = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="layoutId != null" >
+        LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="layoutName != null" >
+        LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="comprehensive != null" >
+        COMPREHENSIVE = #{comprehensive,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null" >
+        BUILDING_ID = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingName != null" >
+        BUILDING_NAME = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL = #{projectLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.ConsumerPriceReport" >
+    update consumer_price_report
+    set DATE = #{date,jdbcType=TIMESTAMP},
+      LAYOUT_ID = #{layoutId,jdbcType=INTEGER},
+      LAYOUT_NAME = #{layoutName,jdbcType=VARCHAR},
+      COMPREHENSIVE = #{comprehensive,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      BUILDING_ID = #{buildingId,jdbcType=INTEGER},
+      BUILDING_NAME = #{buildingName,jdbcType=VARCHAR},
+      PROJECT_LEVEL = #{projectLevel,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

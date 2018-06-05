@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.ConsumerFlowReportMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.ConsumerFlowReport" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="BUILDING_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BUILDING_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IN_COUNT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OUT_COUNT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="STAY_COUNT" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PROJECT_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CREATED_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="UPDATE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="PROJECT_LEVEL" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DATE, BUILDING_ID, BUILDING_NAME, IN_COUNT, OUT_COUNT, STAY_COUNT, PROJECT_ID, 
+    PROJECT_NAME, CREATED_TIME, UPDATE_TIME, PROJECT_LEVEL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from consumer_flow_report
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from consumer_flow_report
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.ConsumerFlowReport" >
+    insert into consumer_flow_report (ID, DATE, BUILDING_ID, 
+      BUILDING_NAME, IN_COUNT, OUT_COUNT, 
+      STAY_COUNT, PROJECT_ID, PROJECT_NAME, 
+      CREATED_TIME, UPDATE_TIME, PROJECT_LEVEL
+      )
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{buildingId,jdbcType=INTEGER}, 
+      #{buildingName,jdbcType=VARCHAR}, #{inCount,jdbcType=VARCHAR}, #{outCount,jdbcType=VARCHAR}, 
+      #{stayCount,jdbcType=VARCHAR}, #{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{projectLevel,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.ConsumerFlowReport" >
+    insert into consumer_flow_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="date != null" >
+        DATE,
+      </if>
+      <if test="buildingId != null" >
+        BUILDING_ID,
+      </if>
+      <if test="buildingName != null" >
+        BUILDING_NAME,
+      </if>
+      <if test="inCount != null" >
+        IN_COUNT,
+      </if>
+      <if test="outCount != null" >
+        OUT_COUNT,
+      </if>
+      <if test="stayCount != null" >
+        STAY_COUNT,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingName != null" >
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="inCount != null" >
+        #{inCount,jdbcType=VARCHAR},
+      </if>
+      <if test="outCount != null" >
+        #{outCount,jdbcType=VARCHAR},
+      </if>
+      <if test="stayCount != null" >
+        #{stayCount,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectLevel != null" >
+        #{projectLevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.ConsumerFlowReport" >
+    update consumer_flow_report
+    <set >
+      <if test="date != null" >
+        DATE = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildingId != null" >
+        BUILDING_ID = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingName != null" >
+        BUILDING_NAME = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="inCount != null" >
+        IN_COUNT = #{inCount,jdbcType=VARCHAR},
+      </if>
+      <if test="outCount != null" >
+        OUT_COUNT = #{outCount,jdbcType=VARCHAR},
+      </if>
+      <if test="stayCount != null" >
+        STAY_COUNT = #{stayCount,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL = #{projectLevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.ConsumerFlowReport" >
+    update consumer_flow_report
+    set DATE = #{date,jdbcType=TIMESTAMP},
+      BUILDING_ID = #{buildingId,jdbcType=INTEGER},
+      BUILDING_NAME = #{buildingName,jdbcType=VARCHAR},
+      IN_COUNT = #{inCount,jdbcType=VARCHAR},
+      OUT_COUNT = #{outCount,jdbcType=VARCHAR},
+      STAY_COUNT = #{stayCount,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PROJECT_LEVEL = #{projectLevel,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

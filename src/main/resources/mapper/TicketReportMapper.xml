@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chow.dao.TicketReportMapper" >
+  <resultMap id="BaseResultMap" type="com.chow.model.TicketReport" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PROJECT_LEVEL" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TYPE_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TICKET_COUNT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BUDGET_ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RETENTION_NUMBER" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="DATE_TYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="TYPE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="GENER" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="FINISH_PERCENTUM" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CREATE_DATE" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROJECT_LEVEL, TYPE_ID, TYPE_NAME, TICKET_COUNT, BUDGET_ID, RETENTION_NUMBER, 
+    DATE_TYPE, TYPE, GENER, FINISH_PERCENTUM, CREATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ticket_data_report_forms
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket_data_report_forms
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chow.model.TicketReport" >
+    insert into ticket_data_report_forms (ID, PROJECT_LEVEL, TYPE_ID, 
+      TYPE_NAME, TICKET_COUNT, BUDGET_ID, 
+      RETENTION_NUMBER, DATE_TYPE, TYPE, 
+      GENER, FINISH_PERCENTUM, CREATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectLevel,jdbcType=INTEGER}, #{typeId,jdbcType=VARCHAR}, 
+      #{typeName,jdbcType=VARCHAR}, #{ticketCount,jdbcType=INTEGER}, #{budgetId,jdbcType=INTEGER}, 
+      #{retentionNumber,jdbcType=INTEGER}, #{dateType,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{gener,jdbcType=INTEGER}, #{finishPercentum,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chow.model.TicketReport" >
+    insert into ticket_data_report_forms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME,
+      </if>
+      <if test="ticketCount != null" >
+        TICKET_COUNT,
+      </if>
+      <if test="budgetId != null" >
+        BUDGET_ID,
+      </if>
+      <if test="retentionNumber != null" >
+        RETENTION_NUMBER,
+      </if>
+      <if test="dateType != null" >
+        DATE_TYPE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="gener != null" >
+        GENER,
+      </if>
+      <if test="finishPercentum != null" >
+        FINISH_PERCENTUM,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectLevel != null" >
+        #{projectLevel,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCount != null" >
+        #{ticketCount,jdbcType=INTEGER},
+      </if>
+      <if test="budgetId != null" >
+        #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="retentionNumber != null" >
+        #{retentionNumber,jdbcType=INTEGER},
+      </if>
+      <if test="dateType != null" >
+        #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="gener != null" >
+        #{gener,jdbcType=INTEGER},
+      </if>
+      <if test="finishPercentum != null" >
+        #{finishPercentum,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chow.model.TicketReport" >
+    update ticket_data_report_forms
+    <set >
+      <if test="projectLevel != null" >
+        PROJECT_LEVEL = #{projectLevel,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketCount != null" >
+        TICKET_COUNT = #{ticketCount,jdbcType=INTEGER},
+      </if>
+      <if test="budgetId != null" >
+        BUDGET_ID = #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="retentionNumber != null" >
+        RETENTION_NUMBER = #{retentionNumber,jdbcType=INTEGER},
+      </if>
+      <if test="dateType != null" >
+        DATE_TYPE = #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="gener != null" >
+        GENER = #{gener,jdbcType=INTEGER},
+      </if>
+      <if test="finishPercentum != null" >
+        FINISH_PERCENTUM = #{finishPercentum,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chow.model.TicketReport" >
+    update ticket_data_report_forms
+    set PROJECT_LEVEL = #{projectLevel,jdbcType=INTEGER},
+      TYPE_ID = #{typeId,jdbcType=VARCHAR},
+      TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      TICKET_COUNT = #{ticketCount,jdbcType=INTEGER},
+      BUDGET_ID = #{budgetId,jdbcType=INTEGER},
+      RETENTION_NUMBER = #{retentionNumber,jdbcType=INTEGER},
+      DATE_TYPE = #{dateType,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=INTEGER},
+      GENER = #{gener,jdbcType=INTEGER},
+      FINISH_PERCENTUM = #{finishPercentum,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="clearAll">
+    delete from ticket_data_report_forms;
+  </delete>
+
+  <select id="getPeople" parameterType="com.chow.model.vo.Con4Budget" resultType="Integer">
+    select ticket_count from ticket_data_report_forms where DATE_TYPE = #{typeDate} and PROJECT_LEVEL = #{pLevel}
+  </select>
+  <resultMap type="com.chow.model.TicketReport" id="templateMap">
+    <!--指定主键列的封装规则
+    id定义主键会底层有优化；
+    column：指定哪一列
+    property：指定对应的javaBean属性
+      -->
+    <id column="id" property="id"/>
+    <!-- 定义普通列封装规则 -->
+    <result column="TYPE_ID" property="typeId"/>
+    <result column="TYPE_NAME" property="typeName"/>
+    <result column="TICKET_COUNT" property="ticketCount"/>
+    <result column="BUDGET_ID" property="budgetId"/>
+    <result column="RETENTION_NUMBER" property="retentionNumber"/>
+    <result column="DATE_TYPE" property="dateType"/>
+    <result column="TYPE" property="type"/>
+    <result column="GENER" property="gener"/>
+    <result column="FINISH_PERCENTUM" property="finishPercentum"/>
+    <result column="CREATE_DATE" property="createDate"/>
+  </resultMap>
+
+  <select id="findCheckTicketData" parameterType="com.chow.model.vo.Con4Budget" resultMap="templateMap">
+    select * from ticket_data_report_forms where PROJECT_LEVEL = #{pLevel}
+    AND `type` = #{type}
+    AND REPLACE(DATE_TYPE,"-","")+0 &gt;= #{startDate}+0
+    AND REPLACE(DATE_TYPE,"-","")+0 &lt;= #{endDate}+0;
+  </select>
+
+</mapper>
