@@ -20,7 +20,7 @@
     <!-- spring版本号 -->
     <spring.version>4.3.5.RELEASE</spring.version>
     <!-- mybatis版本号 -->
-    <mybatis.version>3.4.1</mybatis.version>
+    <mybatis.version>4.3.18</mybatis.version>
     <!-- mongo版本号 -->
     <spring.data.mongodb>1.9.2.RELEASE</spring.data.mongodb>
   </properties>
